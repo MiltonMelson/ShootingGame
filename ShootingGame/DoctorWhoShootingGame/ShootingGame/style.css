@@ -1,0 +1,71 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    /* backup background */
+    background: black;
+    animation: color 50s infinite linear;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.9em;
+    color: rgb(0, 0, 0);
+    font-family: cursive;
+}
+
+h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-family: cursive;
+}
+
+
+button {
+    padding: 10px;
+    font-size: 20px;
+    font-family: cursive;
+    animation: color 10s infinite linear;
+    margin-top: 50px;
+}
+
+@keyframes color {
+    0% {
+        background: #cc3333;
+    }
+
+    15% {
+        background: #ffae00;
+    }
+
+    25% {
+        background: #fbff00;
+    }
+
+    40% {
+        background: #15fc00;
+    }
+
+    50% {
+        background: #00fff2;
+    }
+
+    65% {
+        background: #002efa;
+    }
+
+    75% {
+        background: #8200fc;
+    }
+
+    90% {
+        background: #ff00c8;
+    }
+
+    100% {
+        background: #fa0000;
+    }
+}
