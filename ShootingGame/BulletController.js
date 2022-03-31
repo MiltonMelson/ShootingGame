@@ -17,6 +17,20 @@ export default class BulletController {
         this.timerTillNextBullet--;
     }
 
+    shootSpecial(x, y, speed, dmg, delay, bulletColor) {
+        if (this.timerTillNextBullet <= 0) {
+            let bullet = new Bullet(x, y, speed, dmg);
+            bullet.color = bulletColor;
+            bullet.dmg = 50;
+            bullet.height = 20;
+            bullet.width = 5;
+            
+            this.bullets.push(bullet);
+            this.timerTillNextBullet = delay;
+        }
+        this.timerTillNextBullet--;
+    }
+
     // draws bullets and removes the ones that are off screen
     draw(ctx) {
         this.bullets.forEach((bullet) => {

@@ -51,6 +51,14 @@ export default class Player {
             const bulletX = this.x + (this.width/2); 
             this.bulletController.shoot(bulletX, this.y, speed, dmg, delay);
         }
+        if (this.special) {
+            const speed = 15;
+            const delay = 50;
+            const dmg = 50;
+            const bulletColor = "#39FF14";
+            const bulletX = this.x + (this.width/2); 
+            this.bulletController.shootSpecial(bulletX, this.y, speed, dmg, delay, bulletColor);
+        }
     }
     
     // Moves Player based on keyPressed
@@ -86,6 +94,10 @@ export default class Player {
         if (e.code === "Space") {
             this.shootPressed = true;
         }
+        // "b"
+        if (e.keyCode == 66) {
+            this.special = true;
+        } 
     }
 
     // events when keys are released
@@ -105,6 +117,10 @@ export default class Player {
         if (e.code === "Space") {
             this.shootPressed = false;
         }
+        // "b"
+        if (e.keyCode == 66) {
+            this.special = false;
+        } 
     };
 }
 
