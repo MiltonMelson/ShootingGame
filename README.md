@@ -1,6 +1,6 @@
 # Shooting Game
 https://miltonmelson.github.io/ShootingGame/
-<img>image.png</img> 
+~[alt text]image.png
 
 ## Description
 - Shows how to use canvas to draw and move shapes.
