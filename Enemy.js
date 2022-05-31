@@ -12,6 +12,8 @@ export default class Enemy {
         // Draw enemy box
         ctx.fillStyle = this.color;
         ctx.strokeStyle = this.shields();
+        ctx.shadowColor = "red";
+        this.y = this.y+.25;
         ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.strokeRect(this.x, this.y, this.width, this.height);
 

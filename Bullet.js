@@ -7,7 +7,7 @@ export default class Bullet {
         
         this.width = 3;
         this.height = 10;
-        this.color = "red";
+        this.color = "lightgreen";
     }
 
     // draw the bullet
@@ -19,10 +19,10 @@ export default class Bullet {
 
     // If sprite and bullet overlap
     collideWith (sprite) {
-        if (this.x < sprite.x + sprite.width &&
-            this.x + this.width > sprite.x &&
-            this.y < sprite.y + sprite.height &&
-            this.y + this.height > sprite.y) {
+        if (this.y <= sprite.y + sprite.height &&
+            this.y >= sprite.y && 
+            this.x >= sprite.x &&
+            this.x <= sprite.x + sprite.width) {
                 sprite.takeDamage(this.dmg);
                 return true;
             } 

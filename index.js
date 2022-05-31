@@ -4,71 +4,76 @@ import BulletController from './BulletController.js';
 
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+var score = document.getElementById("score");
 
 canvas.width = 800;
-canvas.height = 700;
-
-const wallpaper = new Image();
-wallpaper.src = './wallpaper.png';
-
-const enemyColor = "green";
+canvas.height = window.innerHeight/1.4;
 
 const bulletController = new BulletController(canvas);
+
 const player = new Player(canvas.width / 2.2, canvas.height / 1.3, bulletController, canvas);
-const enemies = [
-    new Enemy(50, 20, enemyColor, 50),
-    new Enemy(150, 20, enemyColor, 50),
-    new Enemy(250, 20, enemyColor, 50),
-    new Enemy(350, 20, enemyColor, 50),
-    new Enemy(450, 20, enemyColor, 50),
-    new Enemy(550, 20, enemyColor, 50),
-    new Enemy(650, 20, enemyColor, 50),
 
-    new Enemy(100, 100, enemyColor, 30),
-    new Enemy(200, 100, enemyColor, 30),
-    new Enemy(300, 100, enemyColor, 30),
-    new Enemy(400, 100, enemyColor, 30),
-    new Enemy(500, 100, enemyColor, 30),
-    new Enemy(600, 100, enemyColor, 30),
-    new Enemy(700, 100, enemyColor, 30),
+const enemyColor = "black";
+var health1 = Math.floor(Math.random() * 30 + 1);
+var health2 = Math.floor(Math.random() * 30 + 1);
+var health3 = Math.floor(Math.random() * 30 + 1);
 
-    new Enemy(50, 180, enemyColor, 25),
-    new Enemy(150, 180, enemyColor, 25),
-    new Enemy(250, 180, enemyColor, 25),
-    new Enemy(350, 180, enemyColor, 25),
-    new Enemy(450, 180, enemyColor, 25),
-    new Enemy(550, 180, enemyColor, 25),
-    new Enemy(650, 180, enemyColor, 25),
+const enemies = [        
+    new Enemy(25, 20, enemyColor, health1),
+    new Enemy(125, 20, enemyColor, health1),
+    new Enemy(225, 20, enemyColor, health1),
+    new Enemy(325, 20, enemyColor, health1),
+    new Enemy(425, 20, enemyColor, health1),
+    new Enemy(525, 20, enemyColor, health1),
+    new Enemy(625, 20, enemyColor, health1),
+    new Enemy(725, 20, enemyColor, health1),
+
+    new Enemy(65, 100, enemyColor, health2),
+    new Enemy(165, 100, enemyColor, health2),
+    new Enemy(265, 100, enemyColor, health2),
+    new Enemy(365, 100, enemyColor, health2),
+    new Enemy(465, 100, enemyColor, health2),
+    new Enemy(565, 100, enemyColor, health2),
+    new Enemy(665, 100, enemyColor, health2),
+
+    new Enemy(25, 180, enemyColor, health3),
+    new Enemy(125, 180, enemyColor, health3),
+    new Enemy(225, 180, enemyColor, health3),
+    new Enemy(325, 180, enemyColor, health3),
+    new Enemy(425, 180, enemyColor, health3),
+    new Enemy(525, 180, enemyColor, health3),
+    new Enemy(625, 180, enemyColor, health3),
+    new Enemy(725, 180, enemyColor, health3),
 ]
 
 function gameLoop() {
-    // requestAnimationFrame(gameLoop);
     setCommonStyle();
-    ctx.drawImage(wallpaper, 0, 0, canvas.width, canvas.height);
-    
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     bulletController.draw(ctx);
-    
+
     player.draw(ctx);
-    
-    enemies.forEach((enemy) => {
+
+
+    enemies.forEach( (enemy) => {
         if (bulletController.collideWith(enemy)) {
             if (enemy.health <= 0) {
-                const index = enemies.indexOf(enemy);
-                enemies.splice(index, 1);
+                enemy.health = Math.floor(Math.random() * 50);
+                enemy.y = Math.floor(Math.random() * 500 * (-1));
+                score.innerHTML++;
             }
         }
         else {
             enemy.draw(ctx);
         }
-    })
+    });
 }
 
 function setCommonStyle() {
-    ctx.shadowColor = "blue";
-    ctx.shadowBlur = 20;
+    ctx.shadowBlur = 10;
     ctx.lineJoin = "bevel";
     ctx.lineWidth = 6;
 }
 
-setInterval(gameLoop, 1000 / 60);
-// gameLoop();
+setInterval(gameLoop, 1000 / 30);

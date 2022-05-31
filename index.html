@@ -5,27 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Who</title>
+    <title>Space Invaders</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <h1>Doctor Who</h1>
-    <canvas id="game"></canvas>
-    <h2>Controls: ↑ ↓ ← → space</h2>
-    <h2>Special: b</h2>
+    <div>
+        <h1>Space Invaders</h1>
+        <h2>Enemies Destroyed: <b id="score">0</b></h2>
+    </div>
+    <canvas id="game">
+        <div>
+            <h1>Space Invaders</h1>
+            <h2>Enemies Destroyed: <b id="score">0</b></h2>
+        </div>
+    </canvas>
+    <div>
+        <h2>Controls: ↑ ↓ ← → space b</h2>
+    </div>
     <button type="button" onclick="location.reload()">Reset</button>
     <script src="./index.js" type="module"></script>
 </body>
 
 </html>
-
-
-
-<!-- SFX
-
-    <audio id="audio" controls style="display:none">
-    <source src="./laser.mp3" type="audio/mp3">
-</audio>
-
--->

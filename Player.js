@@ -2,11 +2,12 @@ export default class Player {
     constructor(x, y, bulletController, canvas) {
         this.x = x;
         this.y = y;
-        this.height = 50;
-        this.width = 25;
+        this.height = 15;
+        this.width = 15;
         this.canvas = canvas;
         this.bulletController = bulletController;
         this.speed = 10;
+        this.special = false;
 
         // EventListeners for keypress
         document.addEventListener('keydown', this.keydown);
@@ -15,8 +16,9 @@ export default class Player {
 
     draw(ctx) {
         // Draw Player
-        ctx.strokeStyle = "blue";
-        ctx.fillStyle = "cyan"
+        ctx.strokeStyle = "black";
+        ctx.fillStyle = "lightgreen";
+        ctx.shadowColor = "lightgreen";
         ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.strokeRect(this.x, this.y, this.width, this.height);
 
@@ -26,19 +28,19 @@ export default class Player {
         this.shoot();
     }
 
-    // Keeps player inside canvas
+    // Player Space
     boundaryCheck() {
-        if (this.y <= 0) {
-            this.y = 0;
+        if (this.y <= (this.canvas.height / 3)*2) {
+            this.y = (this.canvas.height / 3)*2;
         }
-        if (this.y + this.height >= this.canvas.height) {
-            this.y = this.canvas.height - this.height;
+        if (this.y + this.height > this.canvas.height - 10) {
+            this.y = this.canvas.height - this.height - 10;
         }
-        if (this.x + this.width >= this.canvas.width) {
-            this.x = this.canvas.width - this.width;
+        if (this.x + this.width >= this.canvas.width -10) {
+            this.x = this.canvas.width - this.width -10;
         }
-        if (this.x <= 0) {
-            this.x = 0;
+        if (this.x <= 10) {
+            this.x = 10;
         }
     }
 
@@ -46,7 +48,7 @@ export default class Player {
     shoot() {
         if (this.shootPressed) {
             const speed = 15;
-            const delay = 4;
+            const delay = 5;
             const dmg = 3;
             const bulletX = this.x + (this.width/2); 
             this.bulletController.shoot(bulletX, this.y, speed, dmg, delay);
@@ -54,8 +56,8 @@ export default class Player {
         if (this.special) {
             const speed = 15;
             const delay = 50;
-            const dmg = 50;
-            const bulletColor = "#39FF14";
+            const dmg = 35;
+            const bulletColor = "yellow";
             const bulletX = this.x + (this.width/2); 
             this.bulletController.shootSpecial(bulletX, this.y, speed, dmg, delay, bulletColor);
         }

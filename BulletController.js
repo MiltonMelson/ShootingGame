@@ -12,7 +12,6 @@ export default class BulletController {
         if (this.timerTillNextBullet <= 0) {
             this.bullets.push(new Bullet(x, y, speed, dmg));
             this.timerTillNextBullet = delay;
-            //document.getElementById('audio').play();
         }
         this.timerTillNextBullet--;
     }
