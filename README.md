@@ -1,5 +1,5 @@
 # Shooting Game
-https://miltonmelson.github.io/ShootingGame/
+https://miltonmelson.github.io/SpaceInvaders/
 ![image](https://user-images.githubusercontent.com/77636982/171077007-9797c5a9-6c46-49ea-90b9-7f682e1d3246.png)
 
 ## Description
