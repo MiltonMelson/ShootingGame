@@ -10,20 +10,15 @@
 </head>
 
 <body>
-    <div>
-        <h1>Space Invaders</h1>
-        <h2>Enemies Destroyed: <b id="score">0</b></h2>
+    <h1>Space Invaders</h1>
+    <h2>Controls: ↑ ↓ ← → space b</h2>
+    <h1 id="gameover"></h1>
+    <h2>Enemies Destroyed: <b id="score">0</b></h2>
+    <button id="startBtn">Start Game</button>
+    <div id="canvasDiv">
+        <canvas id="game"></canvas>
     </div>
-    <canvas id="game">
-        <div>
-            <h1>Space Invaders</h1>
-            <h2>Enemies Destroyed: <b id="score">0</b></h2>
-        </div>
-    </canvas>
-    <div>
-        <h2>Controls: ↑ ↓ ← → space b</h2>
-    </div>
-    <button type="button" onclick="location.reload()">Reset</button>
+    <button id="resetBtn" onclick="location.reload()" style="display: none">Reset</button>
     <script src="./index.js" type="module"></script>
 </body>
 

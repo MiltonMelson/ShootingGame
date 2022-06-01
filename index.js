@@ -2,23 +2,23 @@ import Player from './Player.js'
 import Enemy from './Enemy.js';
 import BulletController from './BulletController.js';
 
+const elem = document.getElementById("canvasDiv");
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
-var score = document.getElementById("score");
+
 
 canvas.width = 800;
-canvas.height = window.innerHeight/1.4;
+canvas.height = window.innerHeight / 1.4;
 
 const bulletController = new BulletController(canvas);
-
 const player = new Player(canvas.width / 2.2, canvas.height / 1.3, bulletController, canvas);
-
+const score = document.getElementById("score");
 const enemyColor = "black";
 var health1 = Math.floor(Math.random() * 30 + 1);
 var health2 = Math.floor(Math.random() * 30 + 1);
 var health3 = Math.floor(Math.random() * 30 + 1);
 
-const enemies = [        
+const enemies = [
     new Enemy(25, 20, enemyColor, health1),
     new Enemy(125, 20, enemyColor, health1),
     new Enemy(225, 20, enemyColor, health1),
@@ -46,28 +46,19 @@ const enemies = [
     new Enemy(725, 180, enemyColor, health3),
 ]
 
-function gameLoop() {
-    setCommonStyle();
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+var startBtn = document.getElementById("startBtn");
+var resetBtn = document.getElementById("resetBtn");
+startBtn.addEventListener("click", startGame);
 
-    bulletController.draw(ctx);
+function startGame() {
+    startBtn.style.display = 'none';
+    resetBtn.style.display = 'block';
+    gameLoop();
+}
 
-    player.draw(ctx);
-
-
-    enemies.forEach( (enemy) => {
-        if (bulletController.collideWith(enemy)) {
-            if (enemy.health <= 0) {
-                enemy.health = Math.floor(Math.random() * 50);
-                enemy.y = Math.floor(Math.random() * 500 * (-1));
-                score.innerHTML++;
-            }
-        }
-        else {
-            enemy.draw(ctx);
-        }
-    });
+function gameOver() {
+    elem.parentNode.removeChild(elem);
+    document.getElementById("gameover").innerHTML = "Game Over :("
 }
 
 function setCommonStyle() {
@@ -76,4 +67,31 @@ function setCommonStyle() {
     ctx.lineWidth = 6;
 }
 
-setInterval(gameLoop, 1000 / 30);
+function gameLoop() {
+    setInterval(() => {
+        setCommonStyle();
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        bulletController.draw(ctx);
+
+        player.draw(ctx);
+
+
+        enemies.forEach((enemy) => {
+            if (bulletController.collideWith(enemy)) {
+                if (enemy.health <= 0) {
+                    enemy.health = Math.floor(Math.random() * 50);
+                    enemy.y = Math.floor(Math.random() * 500 * (-1));
+                    score.innerHTML++;
+                }
+            }
+            else {
+                enemy.draw(ctx);
+            }
+            if (player.collideWithEnemy(enemy)) {
+                gameOver();
+            }
+        });
+    }, 1000 / 30);
+}

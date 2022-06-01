@@ -44,6 +44,16 @@ export default class Player {
         }
     }
 
+    collideWithEnemy(sprite) {
+        if (this.y <= sprite.y + sprite.height &&
+            this.y >= sprite.y && 
+            this.x >= sprite.x &&
+            this.x <= sprite.x + sprite.width) {
+                return true;
+            } 
+            return false;
+    }
+
     // Provides bullet speed, rate, and damage to bulletController
     shoot() {
         if (this.shootPressed) {
