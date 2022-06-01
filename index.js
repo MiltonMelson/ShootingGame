@@ -5,7 +5,8 @@ import BulletController from './BulletController.js';
 const elem = document.getElementById("canvasDiv");
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
-
+const wallpaper = new Image();
+wallpaper.src = "wallpaper.png";
 
 canvas.width = 800;
 canvas.height = window.innerHeight / 1.4;
@@ -70,8 +71,7 @@ function setCommonStyle() {
 function gameLoop() {
     setInterval(() => {
         setCommonStyle();
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(wallpaper, 0, 0, canvas.width, canvas.height);
 
         bulletController.draw(ctx);
 
@@ -89,7 +89,7 @@ function gameLoop() {
             else {
                 enemy.draw(ctx);
             }
-            if (player.collideWithEnemy(enemy)) {
+            if (player.collideWithEnemy(enemy) || (enemy.y + enemy.height) >= canvas.height) {
                 gameOver();
             }
         });
