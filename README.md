@@ -5,7 +5,8 @@ https://miltonmelson.github.io/SpaceInvaders/
 
 ## Description
 - Shows how to use canvas to draw and move shapes.
-- Shows how to detect collisions between these objects/shapes.
+- Shows how to use canvas and setInterval to simulate animation.
+- Shows how to detect collisions between objects.
 - Shows how to use eventListeners to detect keyboard keys for movement on the x and y axis. 
 - Shows the uses of id, classes, and keyframes in CSS/HTMl.
 
