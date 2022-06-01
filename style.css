@@ -8,6 +8,7 @@ body {
     /* backup background */
     background: black;
     animation: color 50s infinite linear;
+    font-family: 'ArcadeClassic', sans-serif;
 }
 
 h1 {
@@ -22,7 +23,7 @@ h2 {
 }
 
 button {
-  font-family: "Open Sans", sans-serif;
+  font-family: "ArcadeClassic", sans-serif;
   font-size: 16px;
   letter-spacing: 2px;
   text-decoration: none;
