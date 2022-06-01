@@ -4,6 +4,9 @@ export default class Player {
         this.y = y;
         this.canvas = canvas;
         this.bulletController = bulletController;
+
+        this.width = 15;
+        this.height = 25;
         this.speed = 10;
         this.special = false;
 
@@ -19,8 +22,8 @@ export default class Player {
         ctx.shadowColor = "#39FF14";
         ctx.beginPath();
         ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x + 15, this.y + 25);
-        ctx.lineTo(this.x - 15, this.y + 25);
+        ctx.lineTo(this.x + this.width, this.y + this.height);
+        ctx.lineTo(this.x - this.width, this.y + this.height);
         ctx.closePath();
         ctx.stroke();
 
@@ -30,19 +33,19 @@ export default class Player {
         this.shoot();
     }
 
-    // Player Space
+    // Player boundary
     boundaryCheck() {
         if (this.y <= (this.canvas.height / 3) * 2) {
             this.y = (this.canvas.height / 3) * 2;
         }
-        if (this.y + this.height > this.canvas.height - 10) {
-            this.y = this.canvas.height - this.height - 10;
+        if (this.y + this.height > this.canvas.height - 5) {
+            this.y = this.canvas.height - this.height - 5;
         }
-        if (this.x + this.width >= this.canvas.width - 10) {
-            this.x = this.canvas.width - this.width - 10;
+        if (this.x + this.width >= this.canvas.width - 5) {
+            this.x = this.canvas.width - 5 - this.width;
         }
-        if (this.x <= 10) {
-            this.x = 10;
+        if (this.x - this.width <= 5) {
+            this.x = 5 + this.width;
         }
     }
 
