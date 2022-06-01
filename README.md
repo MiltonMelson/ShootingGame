@@ -1,6 +1,7 @@
 # Shooting Game
 https://miltonmelson.github.io/SpaceInvaders/
-![image](https://user-images.githubusercontent.com/77636982/171310887-60fd4b67-1301-45fc-a48e-373ffe90864b.png)
+![image](https://user-images.githubusercontent.com/77636982/171311004-fa5df033-acf7-4e10-882d-290615e82283.png)
+
 
 ## Description
 - Shows how to use canvas to draw and move shapes.
