@@ -2,8 +2,6 @@ export default class Player {
     constructor(x, y, bulletController, canvas) {
         this.x = x;
         this.y = y;
-        this.height = 15;
-        this.width = 15;
         this.canvas = canvas;
         this.bulletController = bulletController;
         this.speed = 10;
@@ -16,11 +14,15 @@ export default class Player {
 
     draw(ctx) {
         // Draw Player
-        ctx.strokeStyle = "black";
-        ctx.fillStyle = "lightgreen";
-        ctx.shadowColor = "lightgreen";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.strokeRect(this.x, this.y, this.width, this.height);
+        ctx.strokeStyle = "#39FF14";
+        ctx.fillStyle = "yellow";
+        ctx.shadowColor = "#39FF14";
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x + 15, this.y + 25);
+        ctx.lineTo(this.x - 15, this.y + 25);
+        ctx.closePath();
+        ctx.stroke();
 
         // Player methods/functions
         this.move();
@@ -30,14 +32,14 @@ export default class Player {
 
     // Player Space
     boundaryCheck() {
-        if (this.y <= (this.canvas.height / 3)*2) {
-            this.y = (this.canvas.height / 3)*2;
+        if (this.y <= (this.canvas.height / 3) * 2) {
+            this.y = (this.canvas.height / 3) * 2;
         }
         if (this.y + this.height > this.canvas.height - 10) {
             this.y = this.canvas.height - this.height - 10;
         }
-        if (this.x + this.width >= this.canvas.width -10) {
-            this.x = this.canvas.width - this.width -10;
+        if (this.x + this.width >= this.canvas.width - 10) {
+            this.x = this.canvas.width - this.width - 10;
         }
         if (this.x <= 10) {
             this.x = 10;
@@ -46,12 +48,12 @@ export default class Player {
 
     collideWithEnemy(sprite) {
         if (this.y <= sprite.y + sprite.height &&
-            this.y >= sprite.y && 
+            this.y >= sprite.y &&
             this.x >= sprite.x &&
             this.x <= sprite.x + sprite.width) {
-                return true;
-            } 
-            return false;
+            return true;
+        }
+        return false;
     }
 
     // Provides bullet speed, rate, and damage to bulletController
@@ -60,19 +62,17 @@ export default class Player {
             const speed = 15;
             const delay = 5;
             const dmg = 3;
-            const bulletX = this.x + (this.width/2); 
-            this.bulletController.shoot(bulletX, this.y, speed, dmg, delay);
+            this.bulletController.shoot(this.x, this.y, speed, dmg, delay);
         }
         if (this.special) {
             const speed = 15;
             const delay = 50;
             const dmg = 35;
             const bulletColor = "yellow";
-            const bulletX = this.x + (this.width/2); 
-            this.bulletController.shootSpecial(bulletX, this.y, speed, dmg, delay, bulletColor);
+            this.bulletController.shootSpecial(this.x, this.y, speed, dmg, delay, bulletColor);
         }
     }
-    
+
     // Moves Player based on keyPressed
     move() {
         if (this.upPressed) {
@@ -109,7 +109,7 @@ export default class Player {
         // "b"
         if (e.keyCode == 66) {
             this.special = true;
-        } 
+        }
     }
 
     // events when keys are released
@@ -132,7 +132,7 @@ export default class Player {
         // "b"
         if (e.keyCode == 66) {
             this.special = false;
-        } 
+        }
     };
 }
 

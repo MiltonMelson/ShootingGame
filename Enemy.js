@@ -19,7 +19,7 @@ export default class Enemy {
 
         // Draw Health
         ctx.fillStyle = this.shields();
-        ctx.font = "25px Arial";
+        ctx.font = "20px Arial";
         ctx.fillText(this.health, this.x + this.width / 4, this.y + this.height / 1.5);
     }
 
