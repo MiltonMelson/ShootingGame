@@ -18,7 +18,7 @@ export default class BulletController {
 
     shootSpecial(x, y, speed, dmg, delay, bulletColor) {
         if (this.timerTillNextBullet <= 0) {
-            let bullet = new Bullet(x-4, y, speed, dmg);
+            let bullet = new Bullet(x, y, speed, dmg);
             bullet.color = bulletColor;
             bullet.dmg = 35;
             bullet.height = 20;
