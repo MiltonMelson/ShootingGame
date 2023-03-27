@@ -1,58 +1,78 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0;
-    margin: 0;
-    height: 100vh;
-    /* backup background */
-    background: black;
-    animation: color 50s infinite linear;
+    justify-content: center;
+    text-align: center;
     font-family: 'ArcadeClassic', sans-serif;
+    min-height: 100vh;
+    background-color: black;
+    background-image: url('/wallpaper.png');
+    background-size: cover;
+    background-position: center;
+    animation: color 50s infinite linear;
 }
 
-h1 {
-    margin: 0;
-    font-size: 2.9em;
-    color: rgb(0, 0, 0);
+@keyframes color {
+    from {
+        background-color: black;
+    }
+    to {
+        background-color: blue;
+    }
 }
 
-h2 {
-    margin: 0;
+h1, h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2%;
+}
+li {
+    list-style: none;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.btn {
+    font-family: "ArcadeClassic", sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.25em 0.5em;
     margin-bottom: 10px;
-}
-
-button {
-  font-family: "ArcadeClassic", sans-serif;
-  font-size: 16px;
-  letter-spacing: 2px;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #000;
-  cursor: pointer;
-  border: 3px solid;
-  padding: 0.25em 0.5em;
-  margin-bottom: 10px;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
-  position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-button:active {
-  box-shadow: 0px 0px 0px 0px;
-  top: 5px;
-  left: 5px;
-}
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: auto;
+  }
+  
+  .btn-reset {
+    display: none;
+  }
+  
+  .btn:active {
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
+  }
+  
 
 @media (min-width: 768px) {
   .button-54 {
     padding: 0.25em 0.75em;
   }
-}
-#startBtn {
-    margin: auto;
 }
 
 @keyframes color {

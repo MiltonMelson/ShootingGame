@@ -2,17 +2,17 @@ import Player from './Player.js'
 import Enemy from './Enemy.js';
 import BulletController from './BulletController.js';
 
-const elem = document.getElementById("canvasDiv");
 const canvas = document.getElementById("game");
+const intro = document.getElementById("intro");
 const ctx = canvas.getContext("2d");
 const wallpaper = new Image();
 wallpaper.src = "wallpaper.png";
 
-canvas.width = 800;
-canvas.height = window.innerHeight / 1.4;
 
 const bulletController = new BulletController(canvas);
 const player = new Player(canvas.width / 2.2, canvas.height / 1.3, bulletController, canvas);
+const scoreTag = document.getElementById("scoreTag");
+scoreTag.style.display = 'none';
 const score = document.getElementById("score");
 const enemyColor = "black";
 var health1 = Math.floor(Math.random() * 30 + 1);
@@ -47,37 +47,43 @@ const enemies = [
     new Enemy(725, 180, enemyColor, health3),
 ]
 
-var startBtn = document.getElementById("startBtn");
-var resetBtn = document.getElementById("resetBtn");
-startBtn.addEventListener("click", startGame);
-
-function startGame() {
-    startBtn.style.display = 'none';
-    resetBtn.style.display = 'block';
-    gameLoop();
-}
-
-function gameOver() {
-    elem.parentNode.removeChild(elem);
-    document.getElementById("gameover").innerHTML = "Game Over :("
-}
-
 function setCommonStyle() {
     ctx.shadowBlur = 10;
     ctx.lineJoin = "bevel";
     ctx.lineWidth = 6;
 }
+const startBtn = document.getElementById('startBtn');
+const resetBtn = document.getElementById('resetBtn');
+
+startBtn.addEventListener('click', function() {
+    intro.style.display = 'none';
+    // Start the game
+    startBtn.style.display = 'none';
+    resetBtn.style.display = 'block';
+    scoreTag.style.display = 'block';
+    gameLoop();
+    
+    startBtn.style.display = 'none';
+    resetBtn.style.display = 'block';
+});
+
+resetBtn.addEventListener('click', function() {
+  location.reload();
+});
 
 function gameLoop() {
+    canvas.width = 800;
+    canvas.height = window.innerHeight / 1.4;
+    canvas.style.padding = "15px";
+    
     setInterval(() => {
         setCommonStyle();
         ctx.drawImage(wallpaper, 0, 0, canvas.width, canvas.height);
-
+        
         bulletController.draw(ctx);
-
+        
         player.draw(ctx);
-
-
+        
         enemies.forEach((enemy) => {
             if (bulletController.collideWith(enemy)) {
                 if (enemy.health <= 0) {
@@ -94,4 +100,9 @@ function gameLoop() {
             }
         });
     }, 1000 / 30);
+}
+
+function gameOver() {
+    canvas.parentNode.removeChild(canvas);
+    document.getElementById("gameover").innerHTML = "Game Over !\n\n\n"
 }
