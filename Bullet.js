@@ -7,7 +7,7 @@ export default class Bullet {
         
         this.width = 3;
         this.height = 10;
-        this.color = "lightgreen";
+        this.color = "red";
     }
 
     // draw the bullet

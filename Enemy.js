@@ -6,6 +6,7 @@ export default class Enemy {
         this.health = health;
         this.width = 50;
         this.height = 50;
+        this.speed = .35;
     }
 
     draw(ctx) {
@@ -13,7 +14,7 @@ export default class Enemy {
         ctx.fillStyle = this.color;
         ctx.strokeStyle = this.shields();
         ctx.shadowColor = "red";
-        this.y = this.y+.35;
+        this.y = this.y + this.speed;
         ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.strokeRect(this.x, this.y, this.width, this.height);
 
@@ -37,5 +38,11 @@ export default class Enemy {
 
     takeDamage(damage) {
         this.health -= damage;
+    }
+
+    reset() {
+        this.health = Math.floor(Math.random() * 30 + 1);
+        this.y = Math.floor(Math.random() * 250 * (-1));
+        this.speed = this.speed*2 % 1;
     }
 }

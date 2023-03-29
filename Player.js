@@ -59,20 +59,13 @@ export default class Player {
         return false;
     }
 
-    // Provides bullet speed, rate, and damage to bulletController
+    // Provides bullet location of player
     shoot() {
         if (this.shootPressed) {
-            const speed = 15;
-            const delay = 5;
-            const dmg = 3;
-            this.bulletController.shoot(this.x, this.y, speed, dmg, delay);
+            this.bulletController.shoot(this.x, this.y);
         }
         if (this.special) {
-            const speed = 15;
-            const delay = 50;
-            const dmg = 35;
-            const bulletColor = "yellow";
-            this.bulletController.shootSpecial(this.x, this.y, speed, dmg, delay, bulletColor);
+            this.bulletController.shootSpecial(this.x, this.y);
         }
     }
 

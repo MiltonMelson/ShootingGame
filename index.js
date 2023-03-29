@@ -15,8 +15,8 @@ const scoreTag = document.getElementById("scoreTag");
 scoreTag.style.display = 'none';
 const score = document.getElementById("score");
 const enemyColor = "black";
-var health1 = Math.floor(Math.random() * 30 + 1);
-var health2 = Math.floor(Math.random() * 30 + 1);
+var health1 = Math.floor(Math.random() * 10 + 1);
+var health2 = Math.floor(Math.random() * 20 + 1);
 var health3 = Math.floor(Math.random() * 30 + 1);
 
 const enemies = [
@@ -87,8 +87,7 @@ function gameLoop() {
         enemies.forEach((enemy) => {
             if (bulletController.collideWith(enemy)) {
                 if (enemy.health <= 0) {
-                    enemy.health = Math.floor(Math.random() * 50);
-                    enemy.y = Math.floor(Math.random() * 500 * (-1));
+                    enemy.reset();
                     score.innerHTML++;
                 }
             }

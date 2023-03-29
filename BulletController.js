@@ -1,33 +1,48 @@
 import Bullet from "./Bullet.js";
 
+const cooldownTimer = document.getElementById("cooldown");
+
 export default class BulletController {
     bullets = [];
     timerTillNextBullet = 0;
+    cooldown = 0;
+    specialDuration = 100;
 
     constructor(canvas) {
         this.canvas = canvas;
     }
 
-    shoot(x, y, speed, dmg, delay) {
+    shoot(x, y) {
         if (this.timerTillNextBullet <= 0) {
+            const speed = 10;
+            const dmg = 2;
             this.bullets.push(new Bullet(x, y, speed, dmg));
-            this.timerTillNextBullet = delay;
+            this.timerTillNextBullet = 5;
         }
         this.timerTillNextBullet--;
+        this.cooldown--;
+        if (this.cooldown >= 0) {
+            cooldownTimer.innerHTML = this.cooldown;
+        }
     }
 
-    shootSpecial(x, y, speed, dmg, delay, bulletColor) {
-        if (this.timerTillNextBullet <= 0) {
+    shootSpecial(x, y) {
+        if (this.cooldown <= 0) {
+            const speed = 10;
+            const dmg = 30;
             let bullet = new Bullet(x, y, speed, dmg);
-            bullet.color = bulletColor;
-            bullet.dmg = 35;
-            bullet.height = 20;
-            bullet.width = 8;
-            
+            bullet.color = 'yellow';
             this.bullets.push(bullet);
-            this.timerTillNextBullet = delay;
+            this.specialDuration--;
+            if (this.specialDuration <= 0) {
+                this.cooldown = 2500;
+                this.specialDuration = 100;
+            }
         }
-        this.timerTillNextBullet--;
+        this.cooldown--;
+        if (this.cooldown >= 0) {
+            cooldownTimer.innerHTML = this.cooldown;
+        }
     }
 
     // draws bullets and removes the ones that are off screen
