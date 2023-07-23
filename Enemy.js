@@ -14,14 +14,14 @@ export default class Enemy {
         ctx.fillStyle = this.color;
         ctx.strokeStyle = this.shields();
         ctx.shadowColor = "red";
-        this.y = this.y + this.speed;
+        this.y += this.speed;
         ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.strokeRect(this.x, this.y, this.width, this.height);
 
         // Draw Health
         ctx.fillStyle = this.shields();
         ctx.font = "20px Arial";
-        ctx.fillText(this.health, this.x + this.width / 4, this.y + this.height / 1.5);
+        ctx.fillText(this.health, this.x + (this.width / 3.3), this.y + (this.height / 1.6));
     }
 
     shields() {

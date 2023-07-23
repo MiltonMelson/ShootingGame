@@ -90,6 +90,7 @@ function gameLoop() {
                     enemy.reset();
                     score.innerHTML++;
                 }
+                enemy.draw(ctx)
             }
             else {
                 enemy.draw(ctx);
